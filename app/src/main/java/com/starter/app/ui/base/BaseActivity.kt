@@ -108,7 +108,7 @@ abstract class BaseActivity : AppCompatActivity(), HasToolbar, Navigator {
                 )
             )
             view.apply {
-                findViewById<TextView>(com.google.android.material.`R.id.snackbar_text).apply {
+                findViewById<TextView>(com.google.android.material.R.id.snackbar_text).apply {
                     maxLines = 4
                     setTextColor(
                         ResourcesCompat.getColor(

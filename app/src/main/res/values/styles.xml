@@ -1,16 +1,31 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorControlActivated">@color/dark_gray</item>
     </style>
 
     <style name="Theme.RemoveSplashScreenTheme" parent="@style/AppTheme">
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.TextInputLayout.HintTextAlt" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+
+
+    <style name="BoxEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.AppTheme.TextInputLayout.HintTextAlt</item>
+        <item name="boxStrokeColor">@color/selector_outline_box_color</item>
+        <item name="android:textColorHint">@color/dark_gray</item>
+        <item name="hintTextColor">@color/dark_gray</item>
+        <item name="cursorColor">@color/dark_gray</item>
     </style>
 
 </resources>

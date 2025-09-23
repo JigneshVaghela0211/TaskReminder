@@ -88,8 +88,8 @@ dependencies {
     implementation libs.fragmentKtx
 
     // Fonts Size
-    implementation libs.ssp
-    implementation libs.sdp
+//    implementation libs.ssp
+//    implementation libs.sdp
 
     // Glide
     implementation libs.glide
