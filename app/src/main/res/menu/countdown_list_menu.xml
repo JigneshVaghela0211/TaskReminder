@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_show_expired"
+        android:title="Show expired"
+        android:checkable="true"
+        android:checked="false"/>
+    <item
+        android:id="@+id/menu_show_widget"
+        android:title="Show widget"
+        android:checkable="true"
+        android:checked="false"/>
+</menu>

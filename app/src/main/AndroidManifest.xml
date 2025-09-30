@@ -43,8 +43,7 @@
 
         <activity
             android:name=".ui.activity.CreateTaskActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
 
 
         <receiver

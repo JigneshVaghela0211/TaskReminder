@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Premium Features Section -->
+    <item android:title="Premium Features">
+        <menu>
+            <item
+                android:id="@+id/nav_auto_backups"
+                android:icon="@drawable/ic_backup"
+                android:title="Auto Backups" />
+        </menu>
+    </item>
+    
+    <!-- General Section -->
+    <item android:title="General">
+        <menu>
+            <item
+                android:id="@+id/nav_add_countdown"
+                android:icon="@drawable/ic_add"
+                android:title="Add Count Down" />
+            <item
+                android:id="@+id/nav_invite_friends"
+                android:icon="@drawable/ic_share"
+                android:title="Invite Friends" />
+            <item
+                android:id="@+id/nav_faq"
+                android:icon="@drawable/ic_help"
+                android:title="FAQ" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_baseline_settings_20px"
+                android:title="Settings" />
+        </menu>
+    </item>
+    
+    <!-- Legal Section -->
+    <item android:title="Legal">
+        <menu>
+            <item
+                android:id="@+id/nav_terms_of_service"
+                android:icon="@drawable/ic_document"
+                android:title="Terms of Service" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:icon="@drawable/ic_privacy"
+                android:title="Privacy Policy" />
+        </menu>
+    </item>
+    
+</menu>
