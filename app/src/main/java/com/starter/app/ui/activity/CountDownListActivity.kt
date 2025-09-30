@@ -7,7 +7,7 @@ import com.starter.app.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CountDownActivity: BaseActivity() {
+class CountDownListActivity: BaseActivity() {
     private lateinit var binding: CountDownListAcctivityBinding
     override fun findFragmentPlaceHolder(): Int {
         return 0
@@ -21,7 +21,7 @@ class CountDownActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.buttonAdd.setOnClickListener {
-            loadActivity(CountdownListActivity::class.java).start()
+            loadActivity(CreateTaskActivity::class.java).start()
         }
     }
 }

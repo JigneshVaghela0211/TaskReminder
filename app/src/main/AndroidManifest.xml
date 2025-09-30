@@ -38,18 +38,14 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.activity.CountdownListActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name="com.starter.app.ui.activity.CountDownListActivity"
+            android:exported="false" />
 
-        <activity
-            android:name=".ui.activity.CreateCountActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activity.CreateTaskActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar" />
+
 
         <receiver
             android:name=".ui.widget.CountdownWidgetProvider"
