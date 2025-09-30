@@ -26,7 +26,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Handler(Looper.getMainLooper()).postDelayed({
-            loadActivity(CountdownListActivity::class.java).byFinishingCurrent().start()
+            loadActivity(CountDownListActivity::class.java).byFinishingCurrent().start()
         }, 1500)
     }
 

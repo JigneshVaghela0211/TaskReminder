@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import com.starter.app.R
-import com.starter.app.databinding.CountDownListAcctivityBinding
+import com.starter.app.databinding.CountDownListActivityBinding
 import com.starter.app.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CountDownListActivity: BaseActivity() {
-    private lateinit var binding: CountDownListAcctivityBinding
+    private lateinit var binding: CountDownListActivityBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private var isGridLayout = false
@@ -29,7 +29,7 @@ class CountDownListActivity: BaseActivity() {
     }
 
     override fun createViewBinding(): View {
-        binding = CountDownListAcctivityBinding.inflate(layoutInflater)
+        binding = CountDownListActivityBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -165,10 +165,49 @@ class CountDownListActivity: BaseActivity() {
                     showMessage("Show widget: $showWidget")
                     true
                 }
+                R.id.menu_sort -> {
+                    // Dismiss current popup and show sort submenu
+                    popupMenu.dismiss()
+                    showSortSubmenu(view)
+                    true
+                }
                 else -> false
             }
         }
         
         popupMenu.show()
+    }
+    
+    private fun showSortSubmenu(view: View) {
+        val sortPopup = PopupMenu(this, view)
+        sortPopup.menuInflater.inflate(R.menu.sort_submenu, sortPopup.menu)
+        
+        sortPopup.setOnMenuItemClickListener { menuItem: MenuItem ->
+            when (menuItem.itemId) {
+                R.id.sort_title_asc -> {
+                    showMessage("Sorted by Title (A - Z)")
+                    // TODO: Implement title ascending sort logic
+                    true
+                }
+                R.id.sort_title_desc -> {
+                    showMessage("Sorted by Title (Z - A)")
+                    // TODO: Implement title descending sort logic
+                    true
+                }
+                R.id.sort_date_asc -> {
+                    showMessage("Sorted by Date (ascending)")
+                    // TODO: Implement date ascending sort logic
+                    true
+                }
+                R.id.sort_date_desc -> {
+                    showMessage("Sorted by Date (descending)")
+                    // TODO: Implement date descending sort logic
+                    true
+                }
+                else -> false
+            }
+        }
+        
+        sortPopup.show()
     }
 }
