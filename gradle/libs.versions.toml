@@ -15,6 +15,9 @@ ssp = "1.1.0"
 sdp = "1.1.0"
 glide = "4.14.1"
 glideCompiler = "4.13.2"
+room = "2.6.1"
+work = "2.9.0"
+hiltWork = "1.1.0"
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -35,6 +38,7 @@ kotlinCoroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-a
 
 # Hilt
 hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hiltWork = { module = "androidx.hilt:hilt-work", version.ref = "hiltWork" }
 hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
 # Lifecycle components
@@ -59,3 +63,11 @@ sdp = { module = "com.intuit.sdp:sdp-android", version.ref = "sdp" }
 # Glide
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glideCompiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glideCompiler" }
+
+# Room Database
+roomRuntime = { module = "androidx.room:room-runtime", version.ref = "room" }
+roomKtx = { module = "androidx.room:room-ktx", version.ref = "room" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+
+# Work Manager
+workRuntime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }

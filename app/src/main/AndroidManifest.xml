@@ -3,6 +3,10 @@
     package="com.starter.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <application
         android:name="com.starter.app.di.App"
         android:allowBackup="true"
@@ -31,6 +35,29 @@
         <activity
             android:name="com.starter.app.ui.activity.IsolatedActivity"
             android:exported="false" />
+            
+        <activity
+            android:name=".ui.activity.CountdownListActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+            
+        <activity
+            android:name=".ui.activity.CreateCountActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+            
+        <receiver
+            android:name=".ui.widget.CountdownWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/countdown_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

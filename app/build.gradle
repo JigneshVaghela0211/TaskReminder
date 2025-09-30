@@ -71,6 +71,7 @@ dependencies {
     // Hilt
     implementation libs.hiltAndroid
     kapt libs.hiltCompiler
+    implementation libs.hiltWork
 
     // Lifecycle components
     implementation libs.lifecycleRuntimeKtx
@@ -94,6 +95,14 @@ dependencies {
     // Glide
     implementation libs.glide
     kapt libs.glideCompiler
+
+    // Room Database
+    implementation libs.roomRuntime
+    implementation libs.roomKtx
+    kapt libs.roomCompiler
+
+    // Work Manager
+    implementation libs.workRuntime
 
 }
 

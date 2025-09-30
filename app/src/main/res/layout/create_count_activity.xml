@@ -103,7 +103,7 @@
         app:layout_constraintBottom_toBottomOf="@id/textInputWhatIsOnThatDay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/textInputWhatIsOnThatDay"
-        app:srcCompat="@drawable/ic_bookmark" />
+        app:srcCompat="@drawable/ic_tag" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputWhatIsOnThatDay"
@@ -208,9 +208,9 @@
         android:id="@+id/btnSelectTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:layout_marginTop="@dimen/dp_15"
         android:text="Theme"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@id/colorCirclesLayout"
         app:layout_constraintTop_toBottomOf="@id/colorCirclesLayout" />
 
@@ -241,4 +241,37 @@
             android:hint="@string/label_count_for"
             android:textColor="@color/dark_gray" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="Show label"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintStart_toStartOf="@id/textInputCountFor"
+        app:layout_constraintTop_toBottomOf="@id/textInputCountFor"
+        app:switchPadding="@dimen/dp_10" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/switchTime"
+        app:layout_constraintEnd_toStartOf="@id/switchTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/switchTime"
+        app:srcCompat="@drawable/ic_remain" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="Decrease circle with time"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintStart_toStartOf="@id/switchLabel"
+        app:layout_constraintTop_toBottomOf="@id/switchLabel"
+        app:switchPadding="@dimen/dp_10" />
 </androidx.constraintlayout.widget.ConstraintLayout>
