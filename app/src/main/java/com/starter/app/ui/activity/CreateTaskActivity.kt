@@ -249,14 +249,13 @@ class CreateTaskActivity : BaseActivity() {
         dialogBinding.recyclerViewRecurrence.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         dialogBinding.recyclerViewRecurrence.adapter = adapter
         
-        // Set minimum height for the dialog
-        dialog.setOnShowListener {
-            val displayMetrics = resources.displayMetrics
-            val height = (displayMetrics.heightPixels * 0.6).toInt()
-            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, height)
-        }
-        
         dialog.show()
+        
+        // Let the dialog size itself to content
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        
+        // Ensure the RecyclerView measures properly
+        dialogBinding.recyclerViewRecurrence.requestLayout()
     }
     
     private fun handleRecurrenceSelection(recurrenceType: RecurrenceType) {
