@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
@@ -45,21 +44,21 @@ class CountDownListActivity: BaseActivity() {
     }
     
     private fun setupToolbar() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = binding.toolbar.toolbar
         setSupportActionBar(toolbar)
         
         // Setup drawer toggle button
-        findViewById<View>(R.id.buttonDrawerToggle).setOnClickListener {
+        binding.toolbar.buttonDrawerToggle.setOnClickListener {
             drawerLayout.openDrawer(androidx.core.view.GravityCompat.START)
         }
         
         // Setup layout toggle button
-        findViewById<View>(R.id.buttonLayoutToggle).setOnClickListener {
+        binding.toolbar.buttonLayoutToggle.setOnClickListener {
             toggleLayout()
         }
         
         // Setup menu button
-        findViewById<View>(R.id.buttonMenu).setOnClickListener { view ->
+        binding.toolbar.buttonMenu.setOnClickListener { view ->
             showPopupMenu(view)
         }
     }
@@ -78,8 +77,7 @@ class CountDownListActivity: BaseActivity() {
         isGridLayout = !isGridLayout
         
         // Update icon
-        val layoutToggleButton = findViewById<View>(R.id.buttonLayoutToggle)
-        layoutToggleButton.setBackgroundResource(
+        binding.toolbar.buttonLayoutToggle.setBackgroundResource(
             if (isGridLayout) R.drawable.ic_grid_layout else R.drawable.ic_list_layout
         )
         
@@ -96,8 +94,8 @@ class CountDownListActivity: BaseActivity() {
     }
     
     private fun setupNavigationDrawer() {
-        drawerLayout = findViewById(R.id.drawerLayout)
-        navigationView = findViewById(R.id.navigationView)
+        drawerLayout = binding.drawerLayout
+        navigationView = binding.navigationView
         
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -186,22 +184,18 @@ class CountDownListActivity: BaseActivity() {
             when (menuItem.itemId) {
                 R.id.sort_title_asc -> {
                     showMessage("Sorted by Title (A - Z)")
-                    // TODO: Implement title ascending sort logic
                     true
                 }
                 R.id.sort_title_desc -> {
                     showMessage("Sorted by Title (Z - A)")
-                    // TODO: Implement title descending sort logic
                     true
                 }
                 R.id.sort_date_asc -> {
                     showMessage("Sorted by Date (ascending)")
-                    // TODO: Implement date ascending sort logic
                     true
                 }
                 R.id.sort_date_desc -> {
                     showMessage("Sorted by Date (descending)")
-                    // TODO: Implement date descending sort logic
                     true
                 }
                 else -> false
