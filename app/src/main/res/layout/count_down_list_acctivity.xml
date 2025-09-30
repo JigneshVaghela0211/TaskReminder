@@ -8,15 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_30"
-            android:background="@drawable/bg_round_ciricle"
-            android:padding="@dimen/dp_20"
-            android:src="@drawable/ic_add_floting_action"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -25,6 +17,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonAdd"
+            android:layout_margin="@dimen/dp_30"
+            android:background="@drawable/bg_round_ciricle"
+            android:padding="@dimen/dp_20"
+            android:src="@drawable/ic_add_floting_action"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

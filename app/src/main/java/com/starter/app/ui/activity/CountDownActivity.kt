@@ -1,9 +1,12 @@
 package com.starter.app.ui.activity
 
+import android.os.Bundle
 import android.view.View
 import com.starter.app.databinding.CountDownListAcctivityBinding
 import com.starter.app.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CountDownActivity: BaseActivity() {
     private lateinit var binding: CountDownListAcctivityBinding
     override fun findFragmentPlaceHolder(): Int {
@@ -13,5 +16,12 @@ class CountDownActivity: BaseActivity() {
     override fun createViewBinding(): View {
         binding = CountDownListAcctivityBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.buttonAdd.setOnClickListener {
+            loadActivity(CountdownListActivity::class.java).start()
+        }
     }
 }
