@@ -128,7 +128,7 @@ class CreateTaskActivity : BaseActivity() {
                     this.selectedDate = selectedDate
                     binding.textInputEditTextDate.setText(DateUtils.formatDateForDisplay(selectedDate))
                 } else {
-                    Toast.makeText(this, "Please select a date after yesterday", Toast.LENGTH_SHORT).show()
+                    showMessage("Please select a date after yesterday")
                 }
             },
             calendar.get(Calendar.YEAR),
@@ -163,13 +163,13 @@ class CreateTaskActivity : BaseActivity() {
                         binding.textInputEditTextDate.setText(DateUtils.formatDateForDisplay(newDate))
                         dialog.dismiss()
                     } else {
-                        Toast.makeText(this, "Please enter a number between 1 and 365", Toast.LENGTH_SHORT).show()
+                        showMessage("Please enter a number between 1 and 365")
                     }
                 } catch (e: NumberFormatException) {
-                    Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_SHORT).show()
+                    showMessage("Please enter a valid number")
                 }
             } else {
-                Toast.makeText(this, "Please enter number of days", Toast.LENGTH_SHORT).show()
+                showMessage("Please enter number of days")
             }
         }
         
@@ -177,7 +177,7 @@ class CreateTaskActivity : BaseActivity() {
     }
     
     private fun showCalendarEventSelection() {
-        Toast.makeText(this, "Calendar event selection coming soon!", Toast.LENGTH_SHORT).show()
+        showMessage("Calendar event selection coming soon!")
     }
 
     private fun showTimeSelectionDialog() {
@@ -295,13 +295,13 @@ class CreateTaskActivity : BaseActivity() {
                         updateNextRecurrenceText()
                         dialog.dismiss()
                     } else {
-                        Toast.makeText(this, "Please enter a number between 1 and 365", Toast.LENGTH_SHORT).show()
+                        showMessage("Please enter a number between 1 and 365")
                     }
                 } catch (e: NumberFormatException) {
-                    Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_SHORT).show()
+                    showMessage("Please enter a valid number")
                 }
             } else {
-                Toast.makeText(this, "Please enter number of days", Toast.LENGTH_SHORT).show()
+                showMessage("Please enter number of days")
             }
         }
         

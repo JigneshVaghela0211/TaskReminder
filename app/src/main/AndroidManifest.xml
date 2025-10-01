@@ -44,6 +44,9 @@
         <activity
             android:name=".ui.activity.CreateTaskActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activity.SelectThemeActivity"
+            android:exported="false" />
 
 
         <receiver
