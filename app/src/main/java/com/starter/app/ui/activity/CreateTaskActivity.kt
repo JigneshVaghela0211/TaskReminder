@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.toColorInt
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.starter.app.R
 import com.starter.app.databinding.CreateCountActivityBinding
@@ -64,6 +65,15 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
         binding.imageViewBack.setOnClickListener(this)
         binding.colorCirclesLayout.setOnClickListener(this)
         binding.btnSelectTheme.setOnClickListener(this)
+        binding.progressViewUser.apply {
+            setColorArc("#01bdec".toColorInt())
+            setColorBackground("#FFFFFF".toColorInt())
+            setColorCircle("#808080".toColorInt())
+            percent = 50
+            text = "1000 Day"
+            textSubtitle = "10:00"
+            setColorFont("#000000".toColorInt())
+        }
     }
 
     private fun setupDateInput() {

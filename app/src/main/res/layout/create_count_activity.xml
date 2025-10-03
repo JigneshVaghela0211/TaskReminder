@@ -70,6 +70,7 @@
             android:layout_height="wrap_content">
 
             <com.starter.app.utils.ProgressCircleView
+                android:id="@+id/progressViewUser"
                 android:layout_width="@dimen/dp_125"
                 android:layout_height="@dimen/dp_125"
                 android:layout_marginVertical="@dimen/dp_15"
