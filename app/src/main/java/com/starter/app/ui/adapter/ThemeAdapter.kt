@@ -2,12 +2,12 @@ package com.starter.app.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.starter.app.R
 import com.starter.app.databinding.RawThemeTimeBinding
+import com.starter.app.utils.Theme
 
-class ThemeAdapter(private val list: ArrayList<String>) :
+class ThemeAdapter(private val list: ArrayList<Theme>) :
     RecyclerView.Adapter<ThemeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,26 +26,26 @@ class ThemeAdapter(private val list: ArrayList<String>) :
         holder: ViewHolder,
         position: Int
     ) {
-        holder.bind()
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return list.size
     }
 
     inner class ViewHolder(private val binding: RawThemeTimeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
+        fun bind(theme: Theme) {
             binding.pressed.apply {
 
-                setColorArc(ContextCompat.getColor(this.context,R.color.gray))
-                setColorBackground(ContextCompat.getColor(this.context,R.color.black))
-                setColorCircle(ContextCompat.getColor(this.context,R.color.red))
+                setColorArc(theme.progressColor.toColorInt())
+                setColorBackground(theme.background.toColorInt())
+                setColorCircle(theme.borderColor.toColorInt())
                 percent = 50
                 text = "1000 Day"
-                setColorFont(ContextCompat.getColor(this.context,R.color.black))
                 textSubtitle = "10:00"
-                setColorFont(ContextCompat.getColor(this.context,R.color.white))
+                setColorFont(theme.textColor.toColorInt())
+//                setColorFont(ContextCompat.getColor(this.context,R.color.white))
             }
         }
 
