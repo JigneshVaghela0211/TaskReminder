@@ -50,6 +50,7 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
     private fun setOnClickedListeners() {
         binding.imageViewBack.setOnClickListener(this)
         binding.colorCirclesLayout.setOnClickListener(this)
+        binding.btnSelectTheme.setOnClickListener(this)
     }
 
     private fun setupDateInput() {
@@ -333,6 +334,9 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
             }
             binding.colorCirclesLayout.id->{
                 loadActivity(ColorPickerActivity::class.java).start()
+            }
+            binding.btnSelectTheme.id->{
+                loadActivity(SelectThemeActivity::class.java).start()
             }
         }
     }
