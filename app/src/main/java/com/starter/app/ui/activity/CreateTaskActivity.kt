@@ -12,10 +12,16 @@ import com.starter.app.databinding.DialogDateSelectionBinding
 import com.starter.app.databinding.DialogNumberOfDaysBinding
 import com.starter.app.databinding.DialogRecurrenceSelectionBinding
 import com.starter.app.databinding.DialogTimeSelectionBinding
+import com.starter.app.databinding.DialogDaysBeforeDeadlineBinding
+import com.starter.app.databinding.DialogFontSelectionBinding
 import com.starter.app.ui.base.BaseActivity
 import com.starter.app.adapters.RecurrenceAdapter
+import com.starter.app.adapters.TimeUnitAdapter
+import com.starter.app.adapters.FontAdapter
+import com.starter.app.databinding.DialogTimeUnitSelectionBinding
 import com.starter.app.utils.DateUtils
 import com.starter.app.utils.RecurrenceType
+import com.starter.app.utils.TimeUnitType
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -26,6 +32,10 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
     private var selectedDate: Date = DateUtils.getTodayDate()
     private var selectedTime: Calendar = Calendar.getInstance()
     private var selectedRecurrence: RecurrenceType = RecurrenceType.DOES_NOT_REPEAT
+    private var selectedTimeUnit: TimeUnitType = TimeUnitType.AUTO_SELECTION
+    private var enteredCount: Int = 1
+    private var selectedDaysBeforeDeadline: Int = 1
+    private var selectedFont: String = "Default"
     
     override fun findFragmentPlaceHolder(): Int {
         return 0
@@ -42,6 +52,9 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
         setupDateInput()
         setupTimeInput()
         setupRecurrenceInput()
+        setupCountInput()
+        setupDecreaseInput()
+        setupFontInput()
         setDefaultDate()
         setDefaultTime()
         setDefaultRecurrence()
@@ -87,6 +100,45 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
         binding.etRecurrence.setOnClickListener {
             showRecurrenceSelectionDialog()
         }
+    }
+    
+    private fun setupCountInput() {
+        binding.textInputCountFor.setOnClickListener {
+            showTimeUnitSelectionDialog()
+        }
+        binding.editTextCountFor.setOnClickListener {
+            showTimeUnitSelectionDialog()
+        }
+        
+        // Make edit text non-focusable like recurrence field
+        binding.editTextCountFor.isFocusable = false
+        binding.editTextCountFor.isFocusableInTouchMode = false
+    }
+
+    private fun setupDecreaseInput() {
+        binding.textInputDecrease.setOnClickListener {
+            showDaysBeforeDeadlineDialog()
+        }
+        binding.editTextDecrease.setOnClickListener {
+            showDaysBeforeDeadlineDialog()
+        }
+        
+        // Make edit text non-focusable like other fields
+        binding.editTextDecrease.isFocusable = false
+        binding.editTextDecrease.isFocusableInTouchMode = false
+    }
+
+    private fun setupFontInput() {
+        binding.textInputFont.setOnClickListener {
+            showFontSelectionDialog()
+        }
+        binding.editTextFont.setOnClickListener {
+            showFontSelectionDialog()
+        }
+        
+        // Make edit text non-focusable like other fields
+        binding.editTextFont.isFocusable = false
+        binding.editTextFont.isFocusableInTouchMode = false
     }
 
     private fun setDefaultRecurrence() {
@@ -185,6 +237,56 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
     
     private fun showCalendarEventSelection() {
         showMessage("Calendar event selection coming soon!")
+    }
+
+
+    
+    private fun showTimeUnitSelectionDialog() {
+        val dialogBinding = DialogTimeUnitSelectionBinding.inflate(layoutInflater)
+        
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogBinding.root)
+            .setCancelable(true)
+            .create()
+        
+        val timeUnitTypes = listOf(
+            TimeUnitType.AUTO_SELECTION,
+            TimeUnitType.CONCISE_TIME_NOTATION,
+            TimeUnitType.HOURS_MINUTES_SECONDS,
+            TimeUnitType.DAYS,
+            TimeUnitType.WEEKS,
+            TimeUnitType.MONTHS,
+            TimeUnitType.YEARS
+        )
+        
+        val adapter = TimeUnitAdapter(timeUnitTypes) { timeUnitType ->
+            // Validate count input
+            try {
+
+                dialog.dismiss()
+                handleTimeUnitSelection(timeUnitType)
+            } catch (e: NumberFormatException) {
+                showMessage("Please enter a valid number")
+            }
+        }
+        
+        dialogBinding.recyclerViewTimeUnit.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        dialogBinding.recyclerViewTimeUnit.adapter = adapter
+        
+        dialog.show()
+        
+        // Let the dialog size itself to content
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        
+        // Ensure the RecyclerView measures properly
+        dialogBinding.recyclerViewTimeUnit.requestLayout()
+    }
+    
+    private fun handleTimeUnitSelection(timeUnitType: TimeUnitType) {
+        selectedTimeUnit = timeUnitType
+//        enteredCount = count
+        binding.editTextCountFor.setText(" ${timeUnitType.getUnitName()}")
+        showMessage("Selected: ${timeUnitType.getUnitName()}")
     }
 
     private fun showTimeSelectionDialog() {
@@ -325,6 +427,90 @@ class CreateTaskActivity : BaseActivity(), View.OnClickListener {
             binding.textViewNextRecurrence.text = nextRecurrenceText
             binding.textViewNextRecurrence.visibility = View.VISIBLE
         }
+    }
+
+    private fun showDaysBeforeDeadlineDialog() {
+        val dialogBinding = DialogDaysBeforeDeadlineBinding.inflate(layoutInflater)
+        
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogBinding.root)
+            .create()
+        
+        // Set current value if available
+        if (selectedDaysBeforeDeadline > 0) {
+            dialogBinding.etDays.setText(selectedDaysBeforeDeadline.toString())
+        }
+        
+        dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        dialogBinding.btnOk.setOnClickListener {
+            val daysText = dialogBinding.etDays.text.toString()
+            if (daysText.isNotEmpty()) {
+                try {
+                    val days = daysText.toInt()
+                    if (days > 0 && days <= 365) {
+                        selectedDaysBeforeDeadline = days
+                        binding.editTextDecrease.setText("$days days")
+                        dialog.dismiss()
+                    } else {
+                        showMessage("Please enter a number between 1 and 365")
+                    }
+                } catch (e: NumberFormatException) {
+                    showMessage("Please enter a valid number")
+                }
+            } else {
+                showMessage("Please enter number of days")
+            }
+        }
+        
+        dialog.show()
+    }
+    
+    private fun showFontSelectionDialog() {
+        val dialogBinding = DialogFontSelectionBinding.inflate(layoutInflater)
+        
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogBinding.root)
+            .setCancelable(true)
+            .create()
+        
+        val fontOptions = listOf(
+            "Default",
+            "Arial",
+            "Times New Roman",
+            "Helvetica",
+            "Georgia",
+            "Verdana",
+            "Roboto",
+            "Open Sans",
+            "Lato",
+            "Montserrat",
+            "Poppins"
+        )
+        
+        val adapter = FontAdapter(fontOptions) { fontName ->
+            dialog.dismiss()
+            handleFontSelection(fontName)
+        }
+        
+        dialogBinding.recyclerViewFonts.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        dialogBinding.recyclerViewFonts.adapter = adapter
+        
+        dialog.show()
+        
+        // Let the dialog size itself to content
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        
+        // Ensure the RecyclerView measures properly
+        dialogBinding.recyclerViewFonts.requestLayout()
+    }
+    
+    private fun handleFontSelection(fontName: String) {
+        selectedFont = fontName
+        binding.editTextFont.setText(fontName)
+        showMessage("Selected font: $fontName")
     }
 
     override fun onClick(v: View) {
