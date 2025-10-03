@@ -448,6 +448,14 @@
                     android:textColor="@color/dark_gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/switchDropShadow"
+                app:layout_constraintEnd_toStartOf="@id/switchDropShadow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/switchDropShadow"
+                app:srcCompat="@drawable/ic_drop_shadow" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchDropShadow"
@@ -460,6 +468,15 @@
                 app:layout_constraintStart_toStartOf="@id/switchLabel"
                 app:layout_constraintTop_toBottomOf="@id/textInputFont"
                 app:switchPadding="@dimen/dp_10" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/switchClockWise"
+                app:layout_constraintEnd_toStartOf="@id/switchClockWise"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/switchClockWise"
+                app:srcCompat="@drawable/ic_anti_clock" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchClockWise"
