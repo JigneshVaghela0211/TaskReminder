@@ -47,6 +47,9 @@
         <activity
             android:name=".ui.activity.SelectThemeActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activity.ColorPickerActivity"
+            android:exported="false" />
 
 
         <receiver

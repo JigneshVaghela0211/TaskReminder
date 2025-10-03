@@ -39,7 +39,7 @@ class CountDownListActivity: BaseActivity() {
         setupNavigationDrawer()
         
         binding.buttonAdd.setOnClickListener {
-            loadActivity(SelectThemeActivity::class.java).start()
+            loadActivity(CreateTaskActivity::class.java).start()
         }
     }
     

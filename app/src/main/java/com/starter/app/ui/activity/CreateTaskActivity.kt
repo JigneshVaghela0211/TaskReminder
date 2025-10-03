@@ -5,8 +5,8 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.starter.app.R
 import com.starter.app.databinding.CreateCountActivityBinding
 import com.starter.app.databinding.DialogDateSelectionBinding
 import com.starter.app.databinding.DialogNumberOfDaysBinding
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class CreateTaskActivity : BaseActivity() {
+class CreateTaskActivity : BaseActivity(), View.OnClickListener {
     
     lateinit var binding: CreateCountActivityBinding
     private var selectedDate: Date = DateUtils.getTodayDate()
@@ -38,12 +38,18 @@ class CreateTaskActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setOnClickedListeners()
         setupDateInput()
         setupTimeInput()
         setupRecurrenceInput()
         setDefaultDate()
         setDefaultTime()
         setDefaultRecurrence()
+    }
+
+    private fun setOnClickedListeners() {
+        binding.imageViewBack.setOnClickListener(this)
+        binding.colorCirclesLayout.setOnClickListener(this)
     }
 
     private fun setupDateInput() {
@@ -317,6 +323,17 @@ class CreateTaskActivity : BaseActivity() {
             val nextRecurrenceText = "Next recurrence: ${dateFormat.format(nextRecurrence.time)}"
             binding.textViewNextRecurrence.text = nextRecurrenceText
             binding.textViewNextRecurrence.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.imageViewBack -> {
+                finish()
+            }
+            binding.colorCirclesLayout.id->{
+                loadActivity(ColorPickerActivity::class.java).start()
+            }
         }
     }
 }
