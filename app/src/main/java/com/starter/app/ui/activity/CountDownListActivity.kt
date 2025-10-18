@@ -120,7 +120,7 @@ class CountDownListActivity: BaseActivity() {
                     true
                 }
                 R.id.nav_settings -> {
-                    showMessage("Settings clicked")
+                    loadActivity(SettingsActivity::class.java).start()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }

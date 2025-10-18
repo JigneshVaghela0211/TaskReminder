@@ -50,6 +50,9 @@
         <activity
             android:name=".ui.activity.ColorPickerActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:exported="false" />
 
 
         <receiver
